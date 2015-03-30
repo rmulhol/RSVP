@@ -6,7 +6,7 @@ An app to help you plan events, invite guests, know who's coming, and what they'
 ##How to Run
 To run this app in a development environment on your local machine, navigate to the project directory and type `rails s`. 
 
-This app is not currently running in a production environment. Check back later!
+To view the current version of the app running in production, head to: https://rocky-ocean-5667.herokuapp.com/
 
 ##How to Test
 To run the tests for this app, navigate to the project directory and type `rake test`.
