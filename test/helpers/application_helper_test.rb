@@ -1,3 +1,5 @@
+require "test_helper"
+
 class ApplicationHelperTest < ActionView::TestCase
   
   test "should provide base title if no page title given" do
