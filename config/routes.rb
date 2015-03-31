@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'events/new'
+
+  get 'events/edit'
+
   root                 "static_pages#home"
 
   get     "help"    => "static_pages#help"
@@ -8,6 +12,7 @@ Rails.application.routes.draw do
   get     "login"   => "sessions#new"
   post    "login"   => "sessions#create"
   delete  "logout"  => "sessions#destroy"
-
+  
+  resources :events
   resources :users
 end
