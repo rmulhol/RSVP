@@ -1,4 +1,4 @@
-provide(:title, "New Event")
+<%= provide(:title, "New Event") %>
 
 <h1>Create an Event</h1>
 
@@ -11,7 +11,7 @@ provide(:title, "New Event")
       <%= f.text_field :title, class: "form-control" %>
 
       <%= f.label :date %>
-      <%= f.datetime_field :date, class: "form-control" %>
+      <%= f.date_field :date, class: "form-control" %>
 
       <%= f.label :location %>
       <%= f.text_field :location, class: "form-control" %>

@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
-  def logged_in_user
+  def redirect_if_not_logged_in
     unless logged_in?
       store_location
       flash[:danger] = "Please log in"
