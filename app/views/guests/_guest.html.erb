@@ -1,0 +1,14 @@
+<div class="col-md-8">
+  <h4><%= guest.name %>
+    <% if !guest.responsibility.blank? %>
+      <%= "is responsible for " + guest.responsibility %>
+    <% else %>
+      <%= "did not claim a responsibility" %>
+    <% end %>
+  </h4>
+</div>
+<div class="col-md-4">
+    <%= link_to "Edit this guest", edit_user_event_guest_path(user_id: guest.event.user, event_id: guest.event, id: guest), class: "btn btn-primary" %>
+    <%= link_to "Delete this guest", user_event_guest_path(user_id: guest.event.user, event_id: guest.event, id: guest), 
+        method: :delete, class: "btn btn-primary", data: { confirm: "Are you sure?" } %>
+</div>

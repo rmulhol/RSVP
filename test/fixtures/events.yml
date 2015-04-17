@@ -4,7 +4,7 @@ one:
   title: MyString
   date: 2015-03-31 15:00:49
   location: MyString
-  user_id: 1
+  user: michael
 
 two:
   title: MyString

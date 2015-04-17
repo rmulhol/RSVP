@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  
+  skip_before_action :redirect_if_not_logged_in, only: [:new, :create]
+  skip_before_action :redirect_if_incorrect_user, only: [:new, :create]
+
   def show
     @user = current_user
   end

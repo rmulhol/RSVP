@@ -1,3 +1,21 @@
 <% provide(:title, "Help") %>
 <h1>Help</h1>
-<p>We'll provide help about how to use the app once we get it up and running!</p>
+<h3>FAQ</h3>
+<ul>
+  <li>How do I access the App?</li>
+  <ul>
+    <li>To access the RSVP App, you need to <%= link_to "log in", login_path %> or <%= link_to "sign up", signup_path %></li>
+  </ul>
+  <li>How do I create an event?</li>
+  <ul>
+    <li>To create an event after you've logged in, navigate to the dashboard and click "Plan a New Event"</li>
+  </ul>
+  <li>How do I invite guests?</li>
+  <ul>
+    <li>To invite guests, email them the link to your response form (it'll show up on your dashboard under the "To Invite Guests" header for your event)</li>
+  </ul>
+  <li>How do I see who's coming?</li>
+  <ul>
+    <li>To see who's coming, navigate to your event's home page (just click the event name from your dashboard). You'll be able to see who's coming and if anyone has claimed any responsibilities (bringing something, taking care of a task, etc.)</li>
+  </ul>
+</ul>

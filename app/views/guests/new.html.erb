@@ -1,0 +1,19 @@
+<% provide(:title, "Add A Guest") %>
+
+<h1>New Guest for <%= @event.title %></h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for([@guest.event.user, @guest.event, @guest]) do |f| %>
+      <%= render "shared/error_messages", object: f.object %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control", placeholder: "Enter your name..." %>
+
+      <%= f.label :responsibility %>
+      <%= f.text_area :responsibility, class: "form-control", placeholder: "What you're bringing/what you'll handle..." %>
+
+      <%= f.submit "Add Me!", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
