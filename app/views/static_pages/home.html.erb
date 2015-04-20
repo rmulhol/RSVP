@@ -2,7 +2,9 @@
   <h1>Welcome to the RSVP app!</h1> 
 </div>
 
-  <h3>What Does it Do?</h3>
-  <p>The RSVP App helps you organize and manage your events. Tell us when and where your event is happening, and we'll handle the rest.</p>
-  <h3>How do I use it?</h3>
-  <p>First, <%= link_to "log in", login_path %> or <%= link_to "sign up", signup_path %>. Then, create your event and notify your guests. Once they respond, we make it easy for you to see who's coming and if anyone has claimed any responsibilities.</p>
+<h2>The RSVP App helps you organize and manage your events. Tell us when and where your event is happening, and we'll handle the rest.</h2>
+<h2>Get started:</h2> 
+<div class="center">
+  <%= link_to "Sign up", signup_path, class: "btn btn-lg btn-primary" %> 
+  <%= link_to "Log in", login_path, class: "btn btn-lg btn-primary" %> 
+</div>

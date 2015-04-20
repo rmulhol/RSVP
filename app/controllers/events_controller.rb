@@ -1,10 +1,11 @@
 class EventsController < ApplicationController
+  before_action :set_event, only: [:show, :edit, :update]
+
   def index
     @events = current_user.events
   end
 
   def show
-    @event = current_user.events.find(params[:id])
   end
 
   def new
@@ -12,7 +13,6 @@ class EventsController < ApplicationController
   end
 
   def create
-    @user = current_user
     @event = current_user.events.build(event_params)
     if @event.save
       flash[:success] = "Event successfully created!"
@@ -23,11 +23,10 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = current_user.events.find(params[:id])
+    @user = current_user
   end
 
   def update
-    @event = current_user.events.find(params[:id])
     if @event.update_attributes(event_params)
       flash[:success] = "Event updated!"
       redirect_to user_events_url(current_user)
@@ -37,6 +36,10 @@ class EventsController < ApplicationController
   end
 
   private
+
+    def set_event
+      @event = current_user.events.find(params[:id])
+    end
 
     def event_params
       params.require(:event).permit(:title, :date, :location)

@@ -13,11 +13,20 @@ class GuestsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create new guest" do
+  test "should create new guest and redirect to root if user != event owner" do
+    log_in_as users(:wrong_user)
     assert_difference "Guest.count", 1 do
       post :create, user_id: @user, event_id: @event, guest: { name: "Foo Bar", responsibility: "" }
     end
     assert_redirected_to root_url
+  end
+
+  test "should create new guest and redirect to event if user == event owner" do
+    log_in_as @user
+    assert_difference "Guest.count", 1 do
+      post :create, user_id: @user, event_id: @event, guest: { name: "Foo Bar", responsibility: "" }
+    end
+    assert_redirected_to user_event_path(user_id: @user, id: @event)
   end
 
   test "should redirect edit when not logged in" do

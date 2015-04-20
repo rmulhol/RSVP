@@ -12,8 +12,8 @@ class GuestsController < ApplicationController
     @guest = @event.guests.build(guest_params)
     if @guest.save
       flash[:success] = "Thanks for adding your info!"
-      if logged_in?
-        redirect_to user_event_path(user_id: @event.user_id, id: @event)
+      if user_owns_event?        
+        redirect_to user_event_path(user_id: @event.user_id, id: @event) 
       else
         redirect_to root_url
       end
@@ -23,7 +23,9 @@ class GuestsController < ApplicationController
   end
 
   def edit
-    @guest = Guest.find(params[:id])
+    @user = User.find(params[:user_id])
+    @event = @user.events.find(params[:event_id])
+    @guest = @event.guests.find(params[:id])
   end
 
   def update
@@ -50,5 +52,9 @@ class GuestsController < ApplicationController
 
     def set_event
       @event = Event.find(params[:event_id])
+    end
+
+    def user_owns_event?
+      logged_in? && @event.user_id == current_user.id
     end
 end

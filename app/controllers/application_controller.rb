@@ -15,13 +15,9 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_if_incorrect_user
-    unless correct_user?
+    user = params[:user_id] ? User.find_by(id: params[:user_id]) : User.find_by(id: params[:id])
+    unless current_user?(user)
       redirect_to root_url
     end
-  end
-
-  def correct_user?
-    current_user == User.find_by_id(params[:user_id]) ||
-    current_user == User.find_by_id(params[:id])
   end
 end
