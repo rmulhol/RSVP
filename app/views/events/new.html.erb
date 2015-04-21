@@ -1,14 +1,8 @@
 <%= provide(:title, "New Event") %>
-
-<script type="text/javascript">
-function initialize() {
-
-var input = document.getElementById('locationSearchField');
-var autocomplete = new google.maps.places.Autocomplete(input);
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
-</script>
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "location_search.js" %>
+  <%= javascript_include_tag "datetime_select.js" %>
+<% end %>
 
 <h1>Create an Event</h1>
 
@@ -17,14 +11,15 @@ google.maps.event.addDomListener(window, 'load', initialize);
     <%= form_for([:user, @event]) do |f| %>
       <%= render "shared/error_messages", object: f.object %>
 
-      <%= f.label :title %>
+      <%= f.label "Event Name" %>
       <%= f.text_field :title, class: "form-control", 
           placeholder: "Name your event" %>
 
-      <%= f.label :date %>
-      <%= f.date_field :date, class: "form-control" %>
+      <%= f.label "Event Date/Time" %>
+      <%= f.text_field :date, id: "datetimepicker1",
+          class: "form-control" %>
 
-      <%= f.label :location %>
+      <%= f.label "Event Location" %>
       <%= f.text_field :location, id: "locationSearchField", 
           class: "form-control" %>
 
@@ -32,3 +27,4 @@ google.maps.event.addDomListener(window, 'load', initialize);
     <% end %>
   </div>
 </div>
+

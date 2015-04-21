@@ -1,5 +1,5 @@
 <li>
-  <h3><%= link_to event.title, user_event_path(id: event, user_id: event.user_id) %></h3>
+  <h3><%= event.title %></h3>
   <h4>Date: <%= event.date %></h4>
   <h4>Location: <%= event.location %></h4>
   <h4>Guests: <%= event.guests.count %></h4>
@@ -9,6 +9,7 @@
         <h5>Send them to <%= link_to "#{new_user_event_guest_url(event_id: event, user_id: event.user_id)}", new_user_event_guest_path(event_id: event, user_id: event.user) %></h5>
       </li>
     </ul>
-    <%= link_to "Edit Event", edit_user_event_path(id: event, user_id: event.user), class: "btn btn-primary" %>
+    <%= link_to "View Event", user_event_path(id: event, user_id: event.user_id), class: "btn btn-primary" %>
+    <%= link_to "Edit Event", edit_user_event_path(id: event, user_id: event.user), class: "btn btn-primary", "data-no-turbolink" => true %>
     <%= link_to "Delete Event", user_event_path(id: event, user_id: event.user), method: :delete, class: "btn btn-primary", data: { confirm: "Are you sure?" } %>
 </li>

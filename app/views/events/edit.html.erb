@@ -1,4 +1,8 @@
 <% provide(:title, "Edit Event") %>
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "location_search.js" %>
+  <%= javascript_include_tag "datetime_select.js" %>
+<% end %>
 
 <h1>Edit Your Event</h1>
 
@@ -11,10 +15,12 @@
       <%= f.text_field :title, class: "form-control" %>
 
       <%= f.label :date %>
-      <%= f.date_field :date, class: "form-control" %>
+      <%= f.text_field :date, id: "datetimepicker1",
+          class: "form-control" %>
 
       <%= f.label :location %>
-      <%= f.text_field :location, class: "form-control" %>
+      <%= f.text_field :location, id: "locationSearchField",
+          class: "form-control" %>
 
       <%= f.submit "Update my event", class: "btn btn-primary" %>
     <% end %>
