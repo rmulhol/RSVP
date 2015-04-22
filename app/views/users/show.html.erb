@@ -3,14 +3,11 @@
 <h1>Your Dashboard</h1>
 
 <div class="center">
-  <h3>My Events</h3>
-</div>
-<%= render @user.events %>
-
-<br>
-<br>
-
-<div class="center">
   <%= link_to "Plan a New Event", new_user_event_path(@user), class: "btn btn-lg btn-primary", "data-no-turbolink" => true %>
   <%= link_to "Edit My Account Info", edit_user_path, class: "btn btn-lg btn-primary" %>
 </div>
+
+<div class="center">
+  <h3>My Events</h3>
+</div>
+<%= render @user.events %>

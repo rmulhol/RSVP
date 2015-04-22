@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :invite]
 
   def index
     @events = current_user.events
@@ -29,7 +29,7 @@ class EventsController < ApplicationController
   def update
     if @event.update_attributes(event_params)
       flash[:success] = "Event updated!"
-      redirect_to user_events_url(current_user)
+      redirect_to user_url(current_user)
     else
       render "edit"
     end
@@ -38,7 +38,11 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     flash[:success] = "Event successfully deleted"
-    redirect_to user_events_path
+    redirect_to user_url(current_user)
+  end
+
+  def invite
+    @user = current_user
   end
 
   private

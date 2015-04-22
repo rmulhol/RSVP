@@ -4,15 +4,15 @@ class GuestsController < ApplicationController
   before_action :set_user_event_and_guest, only: [:new, :create, :edit, :update, :destroy]
 
   def new
-    @guest = @event.guests.build # overrides @guest
+    @guest = @event.guests.build
   end
 
   def create
-    @guest = @event.guests.build(guest_params) # overrides @guest
+    @guest = @event.guests.build(guest_params)
     if @guest.save
       flash[:success] = "Thanks for adding your info!"
       if user_owns_event?        
-        redirect_to user_event_path(user_id: @event.user_id, id: @event) 
+        redirect_to user_event_path(user_id: @user, id: @event) 
       else
         redirect_to root_url
       end
@@ -36,7 +36,7 @@ class GuestsController < ApplicationController
   def destroy
     @guest.destroy
     flash[:success] = "Guest successfully removed"
-    redirect_to user_event_path(user_id: @event.user_id, id: @event)
+    redirect_to user_event_path(user_id: @user, id: @event)
   end
 
   private
@@ -48,7 +48,7 @@ class GuestsController < ApplicationController
     def set_user_event_and_guest
       @user = User.find_by(id: params[:user_id])
       @event = @user.events.find_by(id: params[:event_id])
-      @guest = @event.guests.find_by(id: params[:id])
+      @guest = @user.guests.find_by(id: params[:id])
     end
 
     def user_owns_event?

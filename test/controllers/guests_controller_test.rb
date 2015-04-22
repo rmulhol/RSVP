@@ -13,7 +13,7 @@ class GuestsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create new guest and redirect to root if user != event owner" do
+  test "should create new guest and redirect to root if user is not event owner" do
     log_in_as users(:wrong_user)
     assert_difference "Guest.count", 1 do
       post :create, user_id: @user, event_id: @event, guest: { name: "Foo Bar", responsibility: "" }
@@ -21,7 +21,7 @@ class GuestsControllerTest < ActionController::TestCase
     assert_redirected_to root_url
   end
 
-  test "should create new guest and redirect to event if user == event owner" do
+  test "should create new guest and redirect to event if user is event owner" do
     log_in_as @user
     assert_difference "Guest.count", 1 do
       post :create, user_id: @user, event_id: @event, guest: { name: "Foo Bar", responsibility: "" }
@@ -84,10 +84,4 @@ class GuestsControllerTest < ActionController::TestCase
       delete :destroy, user_id: @user, event_id: @event, id: @guest
     end
   end
-  
-  # new
-  # create
-  # edit
-  # update
-  # destroy
 end

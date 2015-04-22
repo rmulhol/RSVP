@@ -1,0 +1,15 @@
+<h1>Invite Guests</h1>
+
+<h3>
+  To invite your guests, send them a link to 
+  <%= link_to "#{new_user_event_guest_url(user_id: @user, event_id: @event)}", 
+      new_user_event_guest_path(user_id: @user, event_id: @event) %>.
+</h3>
+<h3>
+  Once they complete the form, we'll update their info on 
+  <%= link_to "your #{@event.title} event homepage", user_event_path(@event, user_id: @user) %>.
+</h3>
+
+<p>
+  We hope to offer email invites soon.
+</p>
