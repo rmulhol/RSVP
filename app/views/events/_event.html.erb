@@ -4,8 +4,8 @@
   <h4>Location: <%= event.location %></h4>
   <h4>Registered Guests: <%= event.guests.count %></h4>
 
-  <%= link_to "Invite Guests", invite_path(event, user_id: event.user_id), class: "btn btn-primary" %>
-  <%= link_to "View Event", user_event_path(event, user_id: event.user_id), class: "btn btn-primary" %>
-  <%= link_to "Edit Event", edit_user_event_path(event, user_id: event.user), class: "btn btn-primary", "data-no-turbolink" => true %>
-  <%= link_to "Delete Event", user_event_path(event, user_id: event.user), method: :delete, class: "btn btn-primary", data: { confirm: "Are you sure?" } %>
+  <%= link_to "Invite Guests", invite_path(event, user_id: event.user_id), class: "btn btn-default" %>
+  <%= link_to "View Event", user_event_path(event, user_id: event.user_id), class: "btn btn-default" %>
+  <%= link_to "Edit Event", edit_user_event_path(event, user_id: event.user), class: "btn btn-default", "data-no-turbolink" => true %>
+  <%= link_to "Delete Event", user_event_path(event, user_id: event.user), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
 </li>

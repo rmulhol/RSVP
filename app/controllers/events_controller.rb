@@ -27,7 +27,7 @@ class EventsController < ApplicationController
   end
 
   def update
-    if @event.update_attributes(event_params)
+    if @event.update(event_params)
       flash[:success] = "Event updated!"
       redirect_to user_url(current_user)
     else

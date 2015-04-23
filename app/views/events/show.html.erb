@@ -1,28 +1,36 @@
 <h1><%= @event.title %></h1>
 
+<div class="center">
+  <%= link_to "My Dashboard", user_path(@event.user), class: "btn btn-lg btn-primary" %>
+  <%= link_to "Invite Guests", invite_path(@event, user_id: @event.user_id), class: "btn btn-lg btn-primary" %>
+  <%= link_to "Edit Event", edit_user_event_path(@event, user_id: @event.user), class: "btn btn-lg btn-primary", "data-no-turbolink" => true %>
+  <%= link_to "Delete Event", user_event_path(@event, user_id: @event.user), method: :delete, class: "btn btn-lg btn-primary", data: { confirm: "Are you sure?" } %>
+</div>
+
 <div class="row">
   <div class="col-md-8">
     <h3>Date:</h3> 
-    <%= @event.date %>
+    <%= @event.date.strftime("%A %B %-d, %Y at %-l:%M %P") %>
     <h3>Location:</h3> 
-    <%= @event.location %>
+      <address>
+        <%= @event.location %>
+      </address>
     <h3>Guests
     <% if @event.guests.count > 0 %>
-      <%= "(#{@event.guests.count})" %>
+      <%= "(#{@event.guests.count})" %></h3>
     <% else %>
-      </h3>Nobody has RSVP'd :(<h3>
+      </h3>
+      <div class="col-md-4 h6">
+        Nobody has RSVP'd :(
+      </div>
     <% end %>
-    </h3>
   </div>
 </div>
 
 <%= render @event.guests %>
 
 <br>
-<br>
-<br>
-<br>
 
 <div class="col-md-6">
-  <%= link_to "Add a guest", new_user_event_guest_path(user_id: @event.user_id, event_id: @event), class: "btn btn-primary" %>
+  <%= link_to "Add a guest", new_event_guest_path(event_id: @event), class: "btn btn-success" %>
 </div>

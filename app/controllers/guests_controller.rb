@@ -25,9 +25,9 @@ class GuestsController < ApplicationController
   end
 
   def update
-    if @guest.update_attributes(guest_params)
+    if @guest.update(guest_params)
       flash[:success] = "Guest successfully updated"
-      redirect_to user_event_path(user_id: params[:user_id], id: params[:event_id])
+      redirect_to user_event_path(@event, user_id: @user)
     else
       render "edit"
     end
@@ -36,7 +36,7 @@ class GuestsController < ApplicationController
   def destroy
     @guest.destroy
     flash[:success] = "Guest successfully removed"
-    redirect_to user_event_path(user_id: @user, id: @event)
+    redirect_to user_event_path(@event, user_id: @user)
   end
 
   private
@@ -46,12 +46,20 @@ class GuestsController < ApplicationController
     end
 
     def set_user_event_and_guest
-      @user = User.find_by(id: params[:user_id])
-      @event = @user.events.find_by(id: params[:event_id])
-      @guest = @user.guests.find_by(id: params[:id])
+      @event = Event.find(params[:event_id])
+      @user = @event.user
+      @guest = @event.guests.find_by(id: params[:id])
     end
 
     def user_owns_event?
       logged_in? && @event.user_id == current_user.id
+    end
+
+    def redirect_if_incorrect_user
+      event = Event.find(params[:event_id])
+      user = event.user
+      unless current_user?(user)
+        redirect_to root_url
+      end
     end
 end

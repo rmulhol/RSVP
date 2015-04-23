@@ -13,7 +13,10 @@ Rails.application.routes.draw do
   
   resources :users do
     resources :events do
-      resources :guests
     end
+  end
+
+  resources :events do
+    resources :guests
   end
 end

@@ -2,8 +2,8 @@
 
 <h3>
   To invite your guests, send them a link to 
-  <%= link_to "#{new_user_event_guest_url(user_id: @user, event_id: @event)}", 
-      new_user_event_guest_path(user_id: @user, event_id: @event) %>.
+  <%= link_to "#{new_event_guest_url(event_id: @event)}", 
+      new_event_guest_path(event_id: @event) %>.
 </h3>
 <h3>
   Once they complete the form, we'll update their info on 
