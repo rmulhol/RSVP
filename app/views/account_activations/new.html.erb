@@ -1,0 +1,18 @@
+<% provide(:title, "Activate Account") %>
+<h1>Activate Your Account</h1>
+
+
+<h4 class="center">Enter your email address below, and we'll send instructions to activate your account!</h4>
+<h2 class="center">Activating your account gives you access to more features, like emailing invites to your guests directly from the RSVP App.</h2>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:account_activation, url: user_account_activations_path) do |f| %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: "form-control" %>
+
+      <%= f.submit "Send Activation Email", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

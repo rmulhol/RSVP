@@ -2,8 +2,20 @@ michael:
   name: Michael Example
   email: michael@example.com
   password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 wrong_user:
   name: Malicious User
   email: hacker@example.com
   password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
+
+activating_user:
+  name: Activating User
+  email: activating@example.com
+  password_digest: <%= User.digest('password') %>
+  activated: false
+  activated_at: nil
+  activation_digest: <%= User.digest('activation') %>

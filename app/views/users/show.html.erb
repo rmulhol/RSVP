@@ -5,6 +5,9 @@
 <div class="center">
   <%= link_to "New Event", new_user_event_path(@user), class: "btn btn-lg btn-primary", "data-no-turbolink" => true %>
   <%= link_to "Edit Account", edit_user_path, class: "btn btn-lg btn-primary" %>
+  <% unless @user.activated? %>
+    <%= link_to "Activate Account", new_user_account_activation_path(user_id: @user), class: "btn btn-lg btn-primary" %>
+  <% end %>
 </div>
 
 <% if @user.events.any? %>

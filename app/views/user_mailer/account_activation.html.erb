@@ -1,0 +1,21 @@
+<p>
+  Hi <%= @user.name %>,
+</p>
+
+<p>
+  Thanks for opting to register your email with the RSVP App! You'll soon have access to all of our features.
+</p>
+
+<p>
+  Complete the account activation process now by clicking the link below:
+</p>
+
+  <%= link_to "Activate My Account!", edit_account_activation_url(@user.activation_token, email: @user.email) %>
+
+<p>
+  See you soon!
+</p>
+
+<p>
+  - The RSVP App team
+</p>

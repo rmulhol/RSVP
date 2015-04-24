@@ -16,7 +16,7 @@ class EventsController < ApplicationController
     @event = current_user.events.build(event_params)
     if @event.save
       flash[:success] = "Event successfully created!"
-      redirect_to user_url(current_user)
+      redirect_to current_user
     else
       render "new"
     end
@@ -29,7 +29,7 @@ class EventsController < ApplicationController
   def update
     if @event.update(event_params)
       flash[:success] = "Event updated!"
-      redirect_to user_url(current_user)
+      redirect_to current_user
     else
       render "edit"
     end
@@ -38,7 +38,7 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     flash[:success] = "Event successfully deleted"
-    redirect_to user_url(current_user)
+    redirect_to current_user
   end
 
   def invite
@@ -54,4 +54,8 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:title, :date, :time, :location)
     end
+
+    # params[:event][:date] regex: /\A201\d-[0|1]\d-[0-3]\d [0|1]\d:[0-6]\d [a|p]m\z/i 
+    # for validating valid date with javascript disabled
+    # can't validate in model since .build and .update convert it to a datetime
 end

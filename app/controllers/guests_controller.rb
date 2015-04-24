@@ -12,7 +12,7 @@ class GuestsController < ApplicationController
     if @guest.save
       flash[:success] = "Thanks for adding your info!"
       if user_owns_event?        
-        redirect_to user_event_path(user_id: @user, id: @event) 
+        redirect_to user_event_path(@event, user_id: @user) 
       else
         redirect_to root_url
       end
@@ -53,13 +53,5 @@ class GuestsController < ApplicationController
 
     def user_owns_event?
       logged_in? && @event.user_id == current_user.id
-    end
-
-    def redirect_if_incorrect_user
-      event = Event.find(params[:event_id])
-      user = event.user
-      unless current_user?(user)
-        redirect_to root_url
-      end
     end
 end

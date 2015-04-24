@@ -12,11 +12,13 @@ Rails.application.routes.draw do
   get "/users/:user_id/events/:id/invite", to: "events#invite", as: "invite"
   
   resources :users do
-    resources :events do
-    end
+    resources :events
+    resources :account_activations, only: [:new, :create]
   end
 
   resources :events do
     resources :guests
   end
+
+  resources :account_activations, only: :edit
 end
