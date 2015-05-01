@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   delete  "logout"  => "sessions#destroy"
 
   get "/users/:user_id/events/:id/invite", to: "events#invite", as: "invite"
+
+  get "users/:id/dashboard", to: "users#dashboard", as: "dashboard"
+  get "users/:id/change_passwrod", to: "users#change_password", as: "change_password"
   
   resources :users do
     resources :events

@@ -29,4 +29,16 @@ class AccountActivationsController < ApplicationController
       redirect_to root_url
     end
   end
+
+  private
+
+    def identify_user_in_params
+      if !params[:user_id].blank?
+        User.find_by(id: params[:user_id])
+      elsif !params[:event_id].blank?
+        Event.find_by(id: params[:event_id]).user
+      else
+        User.find_by(id: params[:id])
+      end
+    end
 end

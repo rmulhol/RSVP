@@ -55,6 +55,10 @@ class EventsController < ApplicationController
       params.require(:event).permit(:title, :date, :time, :location)
     end
 
+    def identify_user_in_params
+      User.find_by(id: params[:user_id])
+    end
+
     # params[:event][:date] regex: /\A201\d-[0|1]\d-[0-3]\d [0|1]\d:[0-6]\d [a|p]m\z/i 
     # for validating valid date with javascript disabled
     # can't validate in model since .build and .update convert it to a datetime

@@ -7,6 +7,23 @@ class UsersControllerTest < ActionController::TestCase
     @wrong_user = users(:wrong_user)
   end
 
+  test "should redirect dashboard when not logged in" do
+    get :dashboard, id: @user
+    assert_redirected_to login_url
+  end
+
+  test "should redirect dashboard when logged in as the wrong user" do
+    log_in_as @wrong_user
+    get :dashboard, id: @user
+    assert_redirected_to root_url
+  end
+
+  test "should get dashboard when logged in as the right user" do 
+    log_in_as @user
+    get :dashboard, id: @user
+    assert_response :success
+  end
+
   test "should redirect show when not logged in" do
     get :show, id: @user
     assert_redirected_to login_url
@@ -51,6 +68,23 @@ class UsersControllerTest < ActionController::TestCase
   test "should get edit when logged in as the right user" do
     log_in_as @user
     get :edit, id: @user
+    assert_response :success
+  end
+
+  test "should redirect change_password when not logged in" do
+    get :change_password, id: @user
+    assert_redirected_to login_url
+  end
+
+  test "should redirect change_password when logged in as the wrong user" do
+    log_in_as @wrong_user
+    get :change_password, id: @user
+    assert_redirected_to root_url
+  end
+
+  test "should get change_password when logged in as the right user" do
+    log_in_as @user
+    get :change_password, id: @user
     assert_response :success
   end
 

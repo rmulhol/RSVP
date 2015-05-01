@@ -54,4 +54,8 @@ class GuestsController < ApplicationController
     def user_owns_event?
       logged_in? && @event.user_id == current_user.id
     end
+
+    def identify_user_in_params
+      Event.find_by(id: params[:event_id]).user
+    end
 end

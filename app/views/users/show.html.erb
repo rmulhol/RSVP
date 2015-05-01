@@ -1,20 +1,8 @@
 <% provide(:title, "Profile") %>
 
-<h1>Your Dashboard</h1>
+<h1>Your Profile</h1>
 
-<div class="center">
-  <%= link_to "New Event", new_user_event_path(@user), class: "btn btn-lg btn-primary", "data-no-turbolink" => true %>
-  <%= link_to "Edit Account", edit_user_path, class: "btn btn-lg btn-primary" %>
-  <% unless @user.activated? %>
-    <%= link_to "Activate Account", new_user_account_activation_path(user_id: @user), class: "btn btn-lg btn-primary" %>
-  <% end %>
-</div>
+<h4>Name: <%= @user.name %></h4>
+<h4>Email: <%= @user.email %><h4>
 
-<% if @user.events.any? %>
-  <div class="row">
-    <h3>My Events</h3>
-    <div class="col-md-8">
-      <%= render @user.events %>
-    </div>
-  </div>
-<% end %>
+<%= link_to "Edit", edit_user_path, class: "btn btn-primary" %>

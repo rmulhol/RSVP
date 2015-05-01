@@ -1,0 +1,21 @@
+<% provide(:title, "Dashboard") %>
+
+<h1>Dashboard</h1>
+
+<div class="center">
+  <%= link_to "New Event", new_user_event_path(@user), class: "btn btn-lg btn-primary", "data-no-turbolink" => true %>
+  <% unless @user.activated? %>
+    <%= link_to "Activate Account", new_user_account_activation_path(user_id: @user), class: "btn btn-lg btn-primary" %>
+  <% end %>
+  <%= link_to "View Profile", user_path(@user), class: "btn btn-lg btn-primary" %>
+  <%= link_to "Edit Profile", edit_user_path, class: "btn btn-lg btn-primary" %>
+</div>
+
+<% if @user.events.any? %>
+  <div class="row">
+    <h3>Events</h3>
+    <div class="col-md-8">
+      <%= render @user.events %>
+    </div>
+  </div>
+<% end %>

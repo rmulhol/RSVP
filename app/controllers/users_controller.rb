@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
   skip_before_action :redirect_if_not_logged_in, only: [:new, :create]
   skip_before_action :redirect_if_incorrect_user, only: [:new, :create]
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:dashboard, :show, :edit, :change_password, :update]
+
+  def dashboard
+  end
 
   def show
   end
@@ -24,6 +27,9 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def change_password
+  end
+
   def update
     if @user.update(user_params)
       flash[:success] = "Profile successfully updated"
@@ -41,5 +47,9 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+
+    def identify_user_in_params
+      User.find_by(id: params[:id])
     end
 end
